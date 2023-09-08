@@ -1,0 +1,23 @@
+<nav *ngIf="!isMobile" class="navbar  navbar-light bg-light">
+    <div class="container">
+        <p class="navbar-text navbar-right">&copy; JOBPORTAL 2020</p>
+        <a class="navbar-text navbar-right" href="https://www.jobportal.com/impressum">Impressumg</a>
+        <a class="navbar-text navbar-right" href="https://www.jobportal.com/datenschutz">Datenschutz</a>
+        <a class="navbar-text navbar-right" href="https://www.jobportal.com/agbs">AGBs</a>
+    </div>
+</nav>
+
+<div *ngIf="isMobile" class="row" style="margin:40px 0px 10px 0px">
+    <div class="col-4 column">
+        <a href="https://www.jobportal.com/impressum">Impressum</a>
+    </div>
+    <div class="col-4 column">
+        <a href="https://www.jobportal.com/datenschutz">Datenschutz</a>
+    </div>
+    <div class="col-4 column">
+        <a href="https://www.jobportal.com/agbs">AGBs</a>
+    </div>
+    <div class="col-12 column" style="padding-top: 5px">
+        <p>&copy; JOBPORTAL 2020</p>
+    </div>
+</div>

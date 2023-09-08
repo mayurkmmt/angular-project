@@ -1,0 +1,49 @@
+<form [formGroup]="vehicleExperienceFormGroup">
+  <p class="h3">Mit welchen Fahrzeugtypen hast du bereits Erfahrung?</p>
+  <div class="question-content">
+
+    <div class="mat-check-group row">
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="tractor-trailer" value="tractor-trailer">Sattelzug
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="solo-vehicle" value="solo-vehicle">Solofahrzeug
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="articulated-train" value="articulated-train">Gliederzug
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="refrigerated-vehicle" value="refrigerated-vehicle">Kühlfahrzeug
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="swap-body" value="swap-body">Wechselbrücke
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="tanker" value="tanker">Tankfahrzeug
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="silo" value="silo">Silo</mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="heavy-transport" value="heavy-transport">Schwertransporte</mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="vehicleExperienceFormGroup.invalid" class="col" color="primary" mat-button
+            matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

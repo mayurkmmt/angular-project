@@ -1,0 +1,12 @@
+<div class="application-details ">
+  <div class="mt-3 mx-2 mt-5">
+    <div class="col  mt-5 text-center">
+      <h4>Der Validierungslink wurde entweder schonmal verwendet oder ist ungültig.</h4>
+    </div>
+  </div>
+  <br />
+  <button *ngIf="!isLogin" style="margin-left: 43%;padding-right: 19px;" mat-flat-button color="primary">
+    <a class="back text-center" routerLink="/login">
+      <span class="" style="color:white">Login</span> </a>
+  </button>
+</div>

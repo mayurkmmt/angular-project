@@ -1,0 +1,56 @@
+@import "././src/styles";
+.application-details {
+  padding: 0;
+  margin: 0;
+  background-color: $background;
+}
+mat-spinner {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+}
+ 
+:host ::ng-deep .mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+:host ::ng-deep .dateDisplay {
+  margin-left: -10px;
+}
+
+mat-chip-list {
+  display: inline-block;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 150px;
+}
+
+
+p.streetValidation {
+  margin-top: -21px;
+  margin-bottom: 18px;
+  font-size: 11px;
+}
+.streetReqired {
+    // border: 1px solid red;
+    color: red;
+}
+.w-23{
+  width: 23%;
+}
+.mat-card-header {
+  color: white;
+  background: $primary;
+  vertical-align: middle;
+
+  .mat-card-title {
+    margin: 0.5rem 0px;
+  }
+}
+ 

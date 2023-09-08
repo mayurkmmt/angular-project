@@ -1,0 +1,7 @@
+<mat-dialog-content class="mat-typography">
+  <p>Du hast dich erfolgreich für diesen Job beworben. Unter dem Menüpunkt "Bewerbungen" kannst du den Status deiner Bewerbung verfolgen.</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+<!--  <button  mat-raised-button color="accent" mat-dialog-close>Abbrechen</button>-->
+  <button  mat-raised-button color="primary" [mat-dialog-close]="true" (click)="doRefresh()"  cdkFocusInitial>OK</button>
+</mat-dialog-actions>

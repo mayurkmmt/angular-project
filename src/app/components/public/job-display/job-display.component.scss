@@ -1,0 +1,25 @@
+mat-card {
+  max-width: 1000px;
+  text-align: center;
+
+  mat-card-header {
+    padding-left: 14rem;
+
+    mat-card-title {
+      text-align: center;
+
+    }
+  }
+
+  mat-card-content {
+    padding-left: 6rem;
+    padding-right: 6rem;
+
+    ul {
+      text-align: left;
+      list-style-position: inside;
+      display: inline-block;
+    }
+  }
+
+}

@@ -1,0 +1,37 @@
+@import "./src/styles";  
+
+
+:host ::ng-deep mat-card {
+    padding: 0px 28px 0px 16px;
+    margin: 8px 0px;
+    background: transparent;
+    border: solid;
+    border-width: 1px;
+    box-shadow: 0px 0px 0px 0px !important;
+    //box-shadow: 0 2px 1px -1px #3f51b5 !important;
+    //box-shadow: 0 1px 1px 0 #3f51b5 !important;
+    //box-shadow: 0 1px 3px 0 #3f51b5 !important;
+    transition: all 500ms;
+    p {
+        margin: auto 0px;
+        padding: 5px;
+    }
+    mat-slider {
+        margin: auto 0px;    
+    }
+}
+
+:host ::ng-deep mat-card.active {
+    background: $primary;
+    p {
+        color:white;
+    }
+}
+:host ::ng-deep mat-card:hover:not(.active){
+    background: $accent;
+}
+:host ::ng-deep .unselectable {
+    -ms-user-select: None;
+    -moz-user-select: None;
+    -webkit-user-select: None; 
+  }

@@ -1,0 +1,135 @@
+<div class="row">
+  <div>
+    <mat-vertical-stepper [linear]="true" #stepper class="col stepper" style="max-width: 400px; padding: 0px;">
+      <mat-step>
+        <div class="question-content">
+          <p class="text-center" style="font-size: 1.5rem;margin-bottom: .5rem; font-weight: 500; line-height: 1.2">
+            Registriere dich mit</p>
+          <div class="button-area row login-button">
+            <!-- <button (click)="signUpWithFB()" mat-flat-button class="col" color="primary" -->
+            <button (click)="signInWithFB()" mat-flat-button class="col" color="primary"
+              style="background-color: white;border: 1px solid #4267b2" mat-button>
+              <span class="fab fa-2x fa-facebook" style="color: #4267b2; padding: 0 15px;"></span>
+              <span class="icon-text-button" style="color: black">Facebook</span>
+            </button>
+          </div>
+          <div class="button-area row login-button">
+            <!-- <button (click)="signUpWithGoogle()" mat-flat-button class="col" color="secondary" -->
+            <button (click)="signInWithGoogle()" mat-flat-button class="col" color="secondary"
+              style="background-color: white; border: solid; border-color:black; border-width: 1px;" mat-button>
+              <span class="fab fa-2x fa-google" style="padding: 0 15px;"></span>
+              <span class="icon-text-button">Google</span>
+            </button>
+            <p style="text-align: center;line-height: 20px;color: #808080;font-size: 12px;" class="mb-2 mt-4">
+              Mit der Anmeldung akzeptiere ich die <a href="https://jobportal.com/agbs/" target="_blank">AGBs</a> und
+              <a href="https://jobportal.com/datenschutz/" target="_blank">Datenschutzerklärung</a>
+            </p>
+          </div>
+        </div>
+        <div>
+          <h5 class="text-center">oder</h5>
+        </div>
+        <form [formGroup]="registrationFormGroup" (ngSubmit)="doSignUp()">
+          <div id="accordion" class="mat-accordion-div">
+            <mat-accordion class="col">
+              <mat-expansion-panel (afterExpand)="scrollTop()"
+                style="{{!isMobile ?'border: 1px solid #2fa16f !important; width: 325px;':'border: 1px solid #2fa16f !important; width: auto;' }}">
+                <mat-expansion-panel-header style="background-color: white;">
+                  <mat-panel-title>
+                    <span style="margin: auto;">Account erstellen</span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-form-field appearance="outline">
+                  <mat-label>Email-Adresse</mat-label>
+                  <input matInput type="email" id="email" class="form-control" formControlName="email" required email>
+                  <mat-error
+                    *ngIf="registrationFormGroup.hasError('email') && registrationFormGroup.hasError('required')">
+                    Please enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Passwort</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" id="password" class="form-control"
+                    formControlName="password" required>
+                  <!-- <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button> -->
+                  <button mat-icon-button matSuffix class="mb-4" type="button" (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <i class="loginFa fas fa-1-5x fa-{{hide ? 'eye-slash' : 'eye'}}"></i>
+                  </button>
+                  <mat-error *ngIf="registrationFormGroup.hasError('required')">
+                    Password is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Bestätige Passwort</mat-label>
+                  <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" id="confirmPassword"
+                    class="form-control" formControlName="confirm_password" required>
+                  <button mat-icon-button matSuffix class="mb-4" type="button"
+                    (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hideConfirmPassword">
+                    <i class="loginFa fas fa-1-5x fa-{{hideConfirmPassword ? 'eye-slash' : 'eye'}}"></i>
+                  </button>
+                  <mat-error *ngIf="registrationFormGroup.hasError('required')">
+                    Confirm Password is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+                <p style="text-align: center;line-height: 20px;color: #808080;font-size: 12px;" class="mb-4">
+                  Mit der Anmeldung akzeptiere ich die <a href="https://jobportal.com/agbs/" target="_blank">AGBs</a>
+                  und <a href="https://jobportal.com/datenschutz/" target="_blank">Datenschutzerklärung</a>
+                </p>
+                <div style="text-align: center;">
+                  <div class="row">
+                    <button mat-flat-button [disabled]="registrationFormGroup.invalid" style="width: 260px"
+                      color="primary" type="submit">
+                      <span class="icon-text-button">Weiter</span>
+                      <span class="fas fa-chevron-right"></span>
+                    </button>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <div class="button-area row">
+            <div class="col-lg-6"></div>
+            <div class="col"></div>
+            <a routerLink="/login">Schon einen Account? Hier zum Login</a>
+          </div>
+        </form>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+  <div *ngIf="!isMobile" class="w-50" style="margin-left: 5rem;
+    margin-top: 5rem; ">
+    <b style="font-size: 30px;">1. Kostenloses Profil erstellen</b><br>
+    <p style="text-align: left !important;font-size: 18px; margin-left: 2rem;"><b>In wenigen Schritten kannst du deine
+        Wünsche und Anforderungen in deinem Profil erstellen – speziell für dich als LKW-Fahrer.</b></p>
+    <b style="font-size: 30px;">2. Erhalte nur passende Jobangebote</b><br>
+    <p style="text-align: left !important;font-size: 18px; margin-left: 2rem;"><b>Nach deiner Anmeldung bekommst du nur
+        Stellenangebote angezeigt, die auch wirklich zu deinen Wünschen passen. </b></p>
+    <b style="font-size: 30px;">3. Bewirb dich mit einem Klick</b><br>
+    <p style="text-align: left !important;font-size: 18px; margin-left: 2rem;"><b>Wenn dich ein Angebot überzeugt,
+        kannst
+        du dich mit einem Klick bewerben. </b></p>
+
+  </div>
+</div>
+
+<div *ngIf="isMobile" class="mobileProgressBar">
+  <br />
+  <div class="mx-2">
+    <b style="font-size: 30px;">1. Kostenloses Profil erstellen</b><br>
+    <p style="text-align: left !important;font-size: 18px; margin-left: 2rem;"><b>In wenigen Schritten kannst du deine
+        Wünsche und Anforderungen in deinem Profil erstellen – speziell für dich als LKW-Fahrer.</b></p>
+    <b style="font-size: 30px;">2. Erhalte nur passende Jobangebote</b><br>
+    <p style="text-align: left !important;font-size: 18px; margin-left: 2rem;"><b>Nach deiner Anmeldung bekommst du nur
+        Stellenangebote angezeigt, die auch wirklich zu deinen Wünschen passen. </b></p>
+    <b style="font-size: 30px;">3. Bewirb dich mit einem Klick</b><br>
+    <p style="text-align: left !important;font-size: 18px; margin-left: 2rem;"><b>Wenn dich ein Angebot überzeugt,
+        kannst du dich mit einem Klick bewerben. </b></p>
+  </div>
+</div>

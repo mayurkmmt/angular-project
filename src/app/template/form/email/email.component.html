@@ -1,0 +1,26 @@
+<form [formGroup]="emailFormGroup">
+  <p class="h3">Bitte gib deine Kontaktdaten ein</p>
+  <div class="question-content">
+    <div class="email-form-field">
+      <mat-form-field>
+        <input matInput placeholder="E-mail" formControlName="email" required>
+      </mat-form-field>
+      <div class="phone-form-field">
+        <mat-form-field>
+          <span matPrefix>+49 &nbsp;</span>
+          <input matInput type="tel" placeholder="Telefonnummer" formControlName="phone" required>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="button-area row">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="emailFormGroup.invalid" class="col" color="primary" mat-button matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

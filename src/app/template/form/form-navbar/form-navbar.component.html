@@ -1,0 +1,11 @@
+<mat-nav-list *ngFor="let navItem of navItems">
+  <a mat-list-item (click)="goToStep(navItem.id)" *ngIf="range.includes(navItem.id)" [ngClass]="{
+      'active':(stepperService.index|async)===navItem.id,
+      'invalid':!(stepperService.state|async)[navItem.id].valid,
+      'disabled':(stepperService.state|async)[navItem.id].disabled}">
+    <span [ngClass]="'fa-'+navItem.icon" class="fas navicon"></span>
+    <div class="icon-text">
+      <span>{{navItem.title}}</span>
+    </div>
+  </a>
+</mat-nav-list>

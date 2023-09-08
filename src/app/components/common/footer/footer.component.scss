@@ -1,0 +1,21 @@
+p {
+    font-size: 14px;
+}
+
+.navbar {
+    background: #eaddd5 !important;
+    max-height: 61px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px -1em 3em;
+}
+
+.navbar-text {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.column {
+    text-align: center;
+    p {
+        margin: 0 2px;
+    }
+}

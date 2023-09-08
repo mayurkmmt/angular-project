@@ -1,0 +1,40 @@
+@import "../../../../styles";
+
+:host ::ng-deep .mat-drawer-inner-container{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  button.mat-menu-item {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    min-width: 40px;
+    min-height: 40px;
+    margin: 0px;
+    padding: 0px;
+  }
+  span {
+    display:none;
+    opacity: 0;
+  }
+  .hover:hover{
+    span{
+      opacity: 1;
+      display:inline;
+      margin-right:15px;
+    }
+  }
+}
+
+.mat-badge-small.mat-badge-above .mat-badge-content {
+  top: 30px;
+}
+.mat-badge-small.mat-badge-overlap.mat-badge-after .mat-badge-content{
+  right: 16px;
+}
+.mobileDevice span#mat-badge-content-0 {
+  top: 5px !important;
+  right: -3px !important;
+}

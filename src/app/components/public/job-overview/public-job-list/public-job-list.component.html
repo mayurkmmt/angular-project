@@ -1,0 +1,60 @@
+<mat-spinner *ngIf="isSpinner"></mat-spinner>
+<div ngxInfiniteScroller
+strategy="scrollingToBoth"
+initialScrollPosition="10"
+(onScrollUp)="onScrollUp()"
+(onScrollDown)="onScrollDown()" id="scroller">
+<div *ngFor="let job of news">
+  <mat-card routerLink="/public/job/{{job.id}}"
+            style="{{job.id == jobId ? 'border : 2px solid #2fa16f; outline:none;' : ' outline:none;'}}"
+            class="match-card">
+    <div class="tool-tip">
+      <mat-card-header>
+        <mat-card-title>
+          {{job.external_title}}
+        </mat-card-title>
+        <mat-card-subtitle>
+          <span class="fas fa-map-marker-alt"></span>
+          {{job.city + ', ' + job.postcode}}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="ml-3" style="outline: none;background-color:  rgb(255,255,255) !important;">
+        <div class="row justify-content-center align-items-center">
+          <div class="col">
+            <i class="fa fa-briefcase" aria-hidden="true"></i>
+            <span class="ml-1">{{getShifts(job.shift)}}</span>
+          </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+          <div class="col">
+            <i class="fa fa-road" aria-hidden="true"></i>
+            <span class="ml-1">{{getTours(job.tours)}}</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </div>
+    <mat-card-actions class="row">
+      <button mat-button class="col"  routerLink="/public/job/{{job.id}}">
+        <span class="fas fa-1-5x fa-info-circle"></span> <span class="icon-text-button">Details</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+</div>
+<!-- <div class="row mt-2" *ngIf="jobList?.count > 10">
+  <div class="col text-center">
+    <button mat-button *ngIf="jobList?.previous" class="mx-2" (click)="getWithParams(jobList.previous)" style="background-color: #1d8552; color:white;">Previous</button>
+    <button mat-button *ngIf="jobList?.next" class="mx-2"  (click)="getWithParams(jobList.next)" style="background-color: #1d8552; color:white;">Next</button>
+  </div>
+</div> -->
+<!--
+<ul id="scroller"
+    ngxInfiniteScroller
+    strategy="scrollingToBoth"
+    (onScrollUp)="onScrollUp()"
+    (onScrollDown)="onScrollDown()">
+  <li class="news" *ngFor="let item of news;index as i;">
+      {{ item.external_title | json}}
+      {{ i }} : News
+  </li>
+</ul> -->

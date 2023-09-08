@@ -1,0 +1,108 @@
+<mat-card class="ml-5">
+  <mat-card-header>
+    <mat-card-title>
+      <p><strong>Du bist LKW Fahrer (m/w/d) und hast Lust auf was Neues?<br>
+          Wir suchen dich als Fahrer!</strong></p>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>Bewirb dich in 2 Minuten ganz ohne Unterlagen</strong></p>
+    <!-- This is what awaits you-->
+    <div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-left">
+          <p><strong>Das erwartet Dich:</strong></p>
+        </div>
+        <div class="col-3"></div>
+      </div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div>
+          <ul>
+            <li>Verantwortungsvolle Tätigkeit als LKW-Fahrer im {{jobDetails?.tours}} mit
+              einem {{jobDetails?.vehicle_experience}}</li>
+            <li>Du hast feste Arbeitszeiten {{jobDetails?.shift}}</li>
+            <li>Ein nettes Team, das sich gegenseitig unterstützt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- You should bring that with you-->
+    <div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-left">
+          <p><strong>Das solltest du mitbringen:</strong></p>
+        </div>
+        <div class="col-3"></div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-2"></div>
+        <div class="col">
+          <ul>
+            <li>Du besitzt einen Führerschein der Klasse {{jobDetails?.license}}</li>
+            <li>Du verfügst über {{language_skill_german}} der deutschen Sprache für den Kundenkontakt</li>
+            <li>Du lieferst eine effiziente, termingerechte und freundliche Kundenbelieferung</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Ideally you have that too-->
+    <div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-left" style="margin-left: -5px;">
+          <p><strong>Idealerweise hast du das auch:</strong></p>
+        </div>
+        <div class="col-3"></div>
+      </div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col text-left" style="margin-left: -15px;">
+          <ul>
+            <li>Einen {{additional_license}}</li>
+            <li>Berufserfahrung von {{jobDetails?.work_experience}} Jahren</li>
+            <li>{{language_skill_german}} in Deutsch</li>
+            <li>Erfahrung auf folgendem Fahrzeugtyp: {{vehicle_experience}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- You transport that-->
+    <div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-left pl-3">
+          <p><strong>Das transportierst du:</strong> {{jobDetails?.being_transported}}</p>
+        </div>
+        <div class="col-3"></div>
+      </div>
+    </div>
+    <!-- What else is important to us-->
+    <div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-left">
+          <p><strong>Was ist uns sonst noch wichtig:</strong> {{jobDetails?.specific_tasks}}</p>
+        </div>
+        <div class="col-3"></div>
+      </div>
+    </div>
+    <!-- We offer you -->
+    <div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-left">
+          <p><strong>Das bieten wir dir:</strong> {{jobDetails?.company.benefit.split(',').join(', ')}}</p>
+        </div>
+        <div class="col-3"></div>
+      </div>
+    </div>
+    <br>
+    <p>Die Stelle passt perfekt zu dir? Dann bewirb dich jetzt über JobPortal!</p>
+  </mat-card-content>
+  <mat-card-actions class="text-center">
+    <button mat-button routerLink="/register" style="background-color: #1d8552; color:white;">Register</button>
+  </mat-card-actions>
+</mat-card>

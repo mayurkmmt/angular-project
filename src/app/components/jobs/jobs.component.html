@@ -1,0 +1,10 @@
+<div class="row not-scrollable" [class.isMobile]="isMobile">
+    <div class="not-scrollable-content" [class.flex-column-reverse]="!id">
+      <div class="col scrollable" [ngClass]="{'col':!id, 'col-lg-5':id}" *ngIf="id && !isMobile  || !id">
+        <app-user-match *ngIf="isNewJobPage"></app-user-match>
+        <app-list-item *ngIf="isApplicationPage"></app-list-item>
+      </div>
+      <div class="col scrollable" >
+      </div>
+    </div>
+  </div>

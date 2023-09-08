@@ -1,0 +1,129 @@
+<div class="login" [class.isMobile]="isMobile" *ngIf="isRegister">
+  <div class="{{isMobile?'login':'w-50 login'}}" style="{{isMobile?'': 'margin-left: 15rem;'}}">
+    <mat-spinner *ngIf="isSpinner && isMobile" style="z-index: 10000000;position: absolute;"></mat-spinner>
+    <mat-vertical-stepper class="col stepper" style="padding: 0;">
+      <mat-step>
+        <p class="h3">Login mit</p>
+        <div class="question-content" style="margin-bottom: 15px">
+          <div class="button-area row login-button">
+            <button (click)="signInWithFB()" mat-flat-button class="col" color="primary"
+              style="background-color: white;border: 1px solid #4267b2" mat-button>
+              <span class="fab fa-2x fa-facebook" style="color: #4267b2; padding: 0 15px;"></span>
+              <span class="icon-text-button" style="color: black">Facebook</span>
+              <!-- <p style="text-align: center;line-height: 20px;color: #808080;" class="mb-2 mt-2">
+                Mit der Anmeldung akzeptiere ich die <a href="https://jobportal.com/agbs/" target="_blank">AGBs</a> und <br/> <a href="https://jobportal.com/datenschutz/" target="_blank">Datenschutzerklärung</a>
+                </p> -->
+            </button>
+          </div>
+          <div class="button-area row login-button">
+            <button (click)="signInWithGoogle()" mat-flat-button class="col" color="secondary"
+              style="background-color: white; border: solid; border-color:black; border-width: 1px;" mat-button>
+              <span class="fab fa-2x fa-google" style="padding: 0 15px;"></span>
+              <span class="icon-text-button">Google</span>
+              <!-- <p style="text-align: center;line-height: 20px;color: #808080;" class="mb-2">
+                Mit der Anmeldung akzeptiere ich die <a href="https://jobportal.com/agbs/" target="_blank">AGBs</a> und <br/> <a href="https://jobportal.com/datenschutz/" target="_blank">Datenschutzerklärung</a>
+                </p> -->
+            </button>
+            <p style="font-size: 12px;line-height: 20px;color: #808080;" class="mb-2 mt-4">
+              Mit der Anmeldung akzeptiere ich die <a href="https://jobportal.com/agbs/" target="_blank">AGBs</a> und <a
+                href="https://jobportal.com/datenschutz/" target="_blank">Datenschutzerklärung</a>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h5 class="text-center">oder</h5>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <form [formGroup]="signInForm" class="create-account-form" (ngSubmit)="doBasicSignIn()">
+              <div id="accordion" class="mat-accordion-div">
+                <mat-accordion>
+                  <mat-expansion-panel style="border: 1px solid #2fa16f !important; width: 325px;">
+                    <mat-expansion-panel-header style="background-color: white;">
+                      <mat-panel-title>
+                        <span style="margin: auto;">Anmelden mit Email/Passwort</span>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email-Adresse</mat-label>
+                      <input matInput type="email" id="email" class="form-control" formControlName="email" email>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>Passwort</mat-label>
+                      <input matInput [type]="hide ? 'password' : 'text'" id="password" class="form-control"
+                        formControlName="password" required>
+                      <!-- <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button> -->
+                      <button class="mb-4" mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <i class="loginFa font-16 fas fa-1-5x fa-{{hide ? 'eye-slash' : 'eye'}}"></i>
+                      </button>
+                    </mat-form-field>
+                    <p style="font-size: 12px;" class="mb-2">
+                      Mit der Anmeldung akzeptiere ich die <a href="https://jobportal.com/agbs/"
+                        target="_blank">AGBs</a> und <a href="https://jobportal.com/datenschutz/"
+                        target="_blank">Datenschutzerklärung</a>
+                    </p>
+                    <div style="text-align: center;">
+                      <div class="row">
+                        <div class="col">
+                          <button mat-flat-button [disabled]="signInForm.invalid" style="width: 260px" color="primary"
+                            type="submit" matStepperNext>
+                            <span class="icon-text-button">Einloggen</span>
+                            <span class="fas fa-sign-in"></span>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="row mt-3" style="text-align: left;">
+                        <div class="col">
+                          <mat-checkbox color="primary" formControlName="rememberMe">Angemeldet bleiben</mat-checkbox>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+              <!-- <p *ngIf="this.isError" class="text-danger">{{errorMessage}}</p><br> -->
+              <div class="button-area text-center">
+                <a routerLink="/start" class="mr-2 mt-3">Kein Account? Dann registriere dich!</a>
+              </div>
+              <div class="text-center mt-2">
+                <a routerLink="/reset-password-request">Passwort zurücksetzen!</a>
+              </div>
+              <!--              <div class="text-center mt-2">-->
+              <!--                <a routerLink="/login-company">Arbeitgeber? Klicken Sie hier, um fortzufahren!</a>-->
+              <!--              </div>-->
+            </form>
+          </div>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+  <div class="w-25" *ngIf="!isMobile">
+    <mat-card style="background-color: #fafafa; box-shadow: 0 0 #fafafa;">
+      <div class="">
+        <h4 class="text-center" style="color: gray;">Arbeitgeber?</h4>
+        <button mat-raised-button type="button" (click)="doCompanyLogin()" class="w-100" style="color: gray;">Hier
+          Anmelden
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div *ngIf="isMobile" class="mt-3 mx-4">
+  <mat-card style="background-color: #fafafa; box-shadow: 0 0 #fafafa;">
+    <div>
+      <h4 class="text-center" style="color: gray;">Arbeitgeber?</h4>
+      <button mat-raised-button type="button" (click)="doCompanyLogin()" class="w-100" style="color: gray;">Hier
+        Anmelden
+      </button>
+    </div>
+  </mat-card>
+</div>
+<!--<app-header *ngIf="!isRegister" [isEnable]="true"></app-header>-->
+<!--<app-form *ngIf="!isRegister" [stepperIndex]="1"></app-form>-->

@@ -1,0 +1,39 @@
+<form [formGroup]="locationFormGroup">
+  <p class="h3">Wie weit soll die Arbeitsstelle maximal von deinem Wohnort entfernt sein?</p>
+  <div class="question-content">
+    <div class="row">
+      <div class="col-lg-4">
+        <mat-form-field>
+          <input matInput class="no-controls" formControlName="postcode"  (ngModelChange)="checkPostCode($event)" (focus)="checkPostCode($event)" (change)="checkPostCode($event)" type="tel" maxlength="5"
+            placeholder="Postleitzahl deines Wohnorts">
+        </mat-form-field>
+      </div>
+      <div class="col-lg-6">
+        <mat-slider #mySlider (input)="myInput.value = mySlider.value" formControlName="sliderValue" thumbLabel="thumbLabel" tickInterval="5" min="10"
+          max="100" step="5">
+        </mat-slider>
+      </div>
+      <div class="col-lg-2" style="display:inline-flex">
+        <mat-form-field class="example-margin">
+          <input class="no-controls" (change)="setMaxValue($event)" matInput #myInput (input)="mySlider.value = myInput.value" type="number" formControlName="sliderValue"
+            min="10" max="100" placeholder="Entfernung">
+          <span matSuffix> km</span>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-error *ngIf="isPostcodeValid" style="">
+      <strong>Bitte gebe eine deutsche Postleitzahl ein</strong>
+    </mat-error>
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="locationFormGroup.invalid || isPostcodeValid" class="col" color="primary" mat-button
+      matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

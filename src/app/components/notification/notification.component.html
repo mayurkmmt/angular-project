@@ -1,0 +1,182 @@
+<mat-spinner *ngIf="isSpinner"></mat-spinner>
+  <!-- <div class="{{isMobile?'not-scrollable-content':'not-scrollable-content '}}"> -->
+    <div style="height: {{ screenHeight }}px;
+    overflow-x: hidden !important;
+    padding: 0px 2px 0px 2px;
+    overflow-y: auto;
+    background : #FBFBFB; padding-left: 66px;width: 553px;
+    scrollbar-width: none;" ngxInfiniteScroller
+    strategy="scrollingToBoth"
+    initialScrollPosition="10"
+    (onScrollUp)="onScrollUp()"
+    (onScrollDown)="onScrollDown()" id="scroller">
+    <!-- <div style="" class="col-lg-4">
+      <mat-card class="match-card">
+        <h5>Email Sending name</h5>
+        <mat-list>
+          <mat-divider></mat-divider>
+          <mat-list-item>applier_after_application</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>??? company checked </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>date_propose_for_job_interview </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>reminder_date_propose_for_job_interview</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>date_propose_for_job_interview_2</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>reminder_date_propose_for_job_interview_2</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>to applicant: interview arranged</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>reminder_interview</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>job_offer_to_applicant</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>company_cancel</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>reminder_job_offer_to_applicant</mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div> -->
+    <div class=" col-lg-12">
+      <mat-card class="match-card">
+        <h5>Guten Tag {{ CuserUser?.first_name  }} {{ CuserUser?.last_name  }} <br />
+          Das ist für dich wichtig:</h5>
+          <form ngNoForm class="form-inline">
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="search" placeholder="Benachrichtigungen" class="search-input">
+              <mat-icon matSuffix><i class="fas fa-check"></i></mat-icon>
+            </mat-form-field>
+          </form>
+        <!-- <mat-list > -->
+        <mat-list  *ngFor="let result of notificationResult; let i = index">
+          <mat-divider></mat-divider>
+          <mat-list-item *ngIf="result.status == 2" class="bullet" id="notifyId{{result?.id}}" (click)="setMarkRead($event,result?.id)">
+            <p>Du hast dich bei <b>{{result?.match.company.name}}</b> als <b>{{result?.match.job.title}}</b> beworben.</p>
+            <br/><p class="date-time">{{result.updated_at |  date:'dd.MM, HH:mm'}}</p>
+          </mat-list-item>
+            <mat-list-item *ngIf="result.status == 3" class="bullet" id="notifyId{{result?.id}}" (click)="setMarkRead($event,result?.id)">
+              <p><b>{{result?.match.company.name}}</b> prüft deine Bewerbung.</p>
+            <br/><p class="date-time">{{result?.updated_at |  date:'dd.MM, HH:mm'}}</p>
+          </mat-list-item>     
+          <mat-list-item *ngIf="result.status == 41" class="bullet" id="notifyId{{result?.id}}" (click)="setMarkRead($event,result?.id)">
+            <p><b>{{result?.match.company.name}}</b>  lädt dich zum persönlichen Interview ein.</p>
+            <br/><p class="date-time">{{result?.updated_at |  date:'dd.MM, HH:mm'}}</p>
+          </mat-list-item>
+          <mat-list-item *ngIf="result.status == 43" class="bullet" id="notifyId{{result?.id}}" (click)="setMarkRead($event,result?.id)">
+            <p><b>{{result?.match.company.name}}</b> hat dir neue Terminvorschläge für ein persönliches Interview geschickt.</p>
+            <br/><p class="date-time">{{result?.updated_at |  date:'dd.MM, HH:mm'}}</p>
+          </mat-list-item>
+          <mat-list-item *ngIf="result.status == 5" class="bullet" id="notifyId{{result?.id}}" (click)="setMarkRead($event,result?.id)">
+            <p>Du haben am TT.MM.JJ ein persönliches Interview bei <b>{{result?.match.company.name}}</b>.</p>
+            <br/><p class="date-time">{{result?.updated_at |  date:'dd.MM, HH:mm'}}</p>
+          </mat-list-item>
+          <mat-list-item *ngIf="result.status == 6" class="bullet" id="notifyId{{result?.id}}" (click)="setMarkRead($event,result?.id)">
+            <p>Das <b>{{result?.match.company.name}}</b> macht dir ein Jobangebot.</p>
+            <br/><p class="date-time">{{result?.updated_at |  date:'dd.MM, HH:mm'}}</p>
+          </mat-list-item>
+          <mat-list-item *ngIf="result.status == 8" class="bullet" id="notifyId{{result?.id}}" (click)="setMarkRead($event,result?.id)">
+            <p><b>{{result?.match.company.name}}</b> hat dir leider kein Jobangebot gemacht.</p>
+            <br/><p class="date-time">{{result?.updated_at |  date:'dd.MM, HH:mm'}}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+    <!-- <div class=" col-lg-4">
+      <mat-card class="match-card">
+        <h5>status</h5>
+        <mat-list>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 1</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 2</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 3</mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div> -->
+  </div>
+
+<!-- <div class="{{isMobile?'':'row not-scrollable'}}">
+  <div class="{{isMobile?'not-scrollable-content':'not-scrollable-content '}}">
+    <div style="" class="col-lg-4">
+      <mat-card class="match-card">
+        <h5>Email Sending name</h5>
+        <mat-list>
+          <mat-divider></mat-divider>
+          <mat-list-item>applier_after_application</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>??? company checked </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>date_propose_for_job_interview </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>reminder_date_propose_for_job_interview</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>date_propose_for_job_interview_2</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>reminder_date_propose_for_job_interview_2</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>to applicant: interview arranged</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>reminder_interview</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>job_offer_to_applicant</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>company_cancel</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>reminder_job_offer_to_applicant</mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+    <div class=" col-lg-4">
+      <mat-card class="match-card">
+        <h5>Guten Tag {{ CuserUser.first_name  }} {{ CuserUser.last_name  }} <br />
+          Das ist für dich wichtig:</h5>
+        <mat-list>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">Du hast dich bei [result?.match.company.name] als [job_name] beworben.</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">[result?.match.company.name] prüft deine Bewerbung.</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet mb-1 mt-1">[result?.match.company.name] lädt dich zum persönlichen Interview ein.
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">Erinnerung: [result?.match.company.name] lädt dich zum persönlichen Interview ein.
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">[result?.match.company.name] hat dir neue Terminvorschläge für ein persönliches Interview
+            geschickt.</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">Erinnerung:[result?.match.company.name] hat Ihnen neue Terminvorschläge für ein persönliches
+            Interview geschickt.</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">Du haben am TT.MM.JJ ein persönliches Interview bei [result?.match.company.name].
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">Erinnerung: Du hast am TT.MM.JJ ein persönliches Interview bei [result?.match.company.name].
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">Das [result?.match.company.name] macht dir ein Jobangebot.</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">[result?.match.company.name] hat dir leider kein Jobangebot gemacht.</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class="bullet">Erinnerung: Das [result?.match.company.name] macht dir ein Jobangebot.</mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+    <div class=" col-lg-4">
+      <mat-card class="match-card">
+        <h5>status</h5>
+        <mat-list>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 1</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 2</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 3</mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+  </div>
+</div> -->

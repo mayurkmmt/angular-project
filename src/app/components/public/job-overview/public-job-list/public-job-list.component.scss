@@ -1,0 +1,78 @@
+@import "../../../../../styles";
+
+.match-card {
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  background-color: $background;
+  cursor: pointer;
+
+  mat-card-actions {
+    button {
+      //background-color: #2fa16f;
+      //border: 1px solid gray;
+      //border: 1px solid #424242;
+    }
+  }
+  .tool-tip {
+    cursor: default;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+    supported by Chrome, Opera and Firefox */
+  }
+}
+
+//mat-card {
+//  padding: 16px 16px 0 16px;
+//  cursor: pointer;
+//
+//
+//}
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: none; 
+  border-radius: 1px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background : white; 
+  border-radius: 1px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background : white; 
+}
+
+#scroller {
+  height: 100vh;
+  background-color:  rgb(255,255,255);;
+  overflow-x: hidden !important;
+  overflow-y: auto;
+  scrollbar-width: none;
+  // width: 450px;
+  // overflow: scroll;
+  // padding: 0;
+  // margin: 0;
+  // list-style: none;
+}
+
+.news {
+  padding: 30px;
+}
+
+
+.match-card {
+  background-color: rgb(255,255,255) !important;
+}

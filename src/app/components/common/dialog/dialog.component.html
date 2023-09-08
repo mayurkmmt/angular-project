@@ -1,0 +1,17 @@
+<mat-dialog-content class="mat-typography">
+  <p *ngIf="isApply">Klicke auf "Absenden" um deine Bewerbung an das Unternehmen zu senden</p>
+  <p *ngIf="isRefuse">Möchtest du diese Stelle wirklich aus deiner Übersicht entfernen?</p>
+  <p *ngIf="isReject && (jobStatus == 1 )">Möchten Sie diese Stelle wirklich aus Ihrer Übersicht entfernen?</p>
+  <p *ngIf="isReject && (jobStatus >= 2 && jobStatus <= 4)">Willst du deine Bewerbung tatsächlich zurückziehen?</p>
+  <p *ngIf="isReject && (jobStatus >= 5)">Willst du dem Unternehmen wirklich absagen?</p>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button  mat-raised-button color="accent" mat-dialog-close>Abbrechen</button>
+  <button  mat-raised-button color="primary"  *ngIf="!isRefuse"  [mat-dialog-close]="true" (click)="isApply? doApply() : doReject()" cdkFocusInitial>
+    {{isApply?'Absenden':'Ja'}}
+  </button>
+  <button  mat-raised-button color="primary" *ngIf="isRefuse" [mat-dialog-close]="true" (click)="isRefuse? doRefuse() : doRefuse()" cdkFocusInitial>
+    {{isRefuse?'Absenden':'Ja'}}
+  </button>
+</mat-dialog-actions>

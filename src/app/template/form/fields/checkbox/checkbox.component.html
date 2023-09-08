@@ -1,0 +1,17 @@
+<mat-card [class.active]="sliderValueName!=sliderStart">
+  <div class="row">
+    <div style="margin: auto !important; cursor: pointer;" class="col-lg-8 unselectable" (click)="onClick()">
+      <div class="row">
+        <p class="col-xs-6 col" style="margin: auto !important">
+          <ng-content></ng-content>:
+        </p>
+        <p class="col-xs-6 col" style="margin: auto !important">
+          {{ sliderValueName }}
+        </p>
+      </div>
+    </div>
+    <mat-slider class="col-lg-4 col-xs-6" #slider min="0" max="3" step="1" class="col"
+      tickInterval="1" (input)='changeMatSlider($event)'>
+    </mat-slider>
+  </div>
+</mat-card>

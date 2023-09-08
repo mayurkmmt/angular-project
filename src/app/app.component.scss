@@ -1,0 +1,203 @@
+@import "../styles.scss";
+
+:host ::ng-deep .main-container {
+  min-height: 100vh;
+  padding-top: 64px;
+  // margin-bottom: -50px;
+}
+
+.all:not(.isMobile) {
+  .content-body{
+    margin: 65px 65px 5px 65px;
+    // margin: 65px 65px 5px 120px;
+  }
+  .toolbox {
+    height:10vh;
+  }
+}
+.transparent {
+  background-color:transparent
+}
+.all {
+  /*display: flex;
+  flex-direction: column;*/
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.all.isMobile{
+  width: 100vw;
+  .content-body{
+    min-height: 80vh;
+    margin-bottom:30px;
+  }
+}
+.footer {
+    height:10vh;
+}
+.toolbox {
+//  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5)
+    background: $accent;
+    padding: 0;
+    //height: 10vh;
+    margin: 0 10px 10px 0;
+    .row {
+      width: 100%;
+    }
+    /*a {
+      color: white !important;
+    }*/
+  }
+/* settings for desktop and mobile
+*/
+:host ::ng-deep .mat-nav-list {
+  padding: 0;
+  a.disabled {
+    cursor: not-allowed;
+    .icon-text, span.fas {
+      color: #aaaaaa
+    }
+  }
+  a.invalid:not(.active):not(.disabled) {
+    .icon-text, span.fas {
+      color: red;
+    }
+  }
+  a.active {
+    background: $primary !important;
+    .icon-text, span.fas {
+      color:white;
+    }
+  }
+  a:hover:not(.active):not(.disabled) {
+    background: $accent;
+  }
+}
+:host ::ng-deep mat-sidenav-container {
+  min-height: 100vh;
+}
+
+
+:host ::ng-deep .mat-drawer-side {
+  border: 0px;
+}
+
+:host ::ng-deep .desktop .mat-drawer-inner-container{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  .hover{
+    padding: 0px;
+    //margin: 1px 1px 2px 0px;
+    //box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+    .mat-list-item-content{
+      padding: 0px 0px !important;
+    }
+    a {
+      background: #ffffff;
+      max-width: 65px;
+      height: 65px;
+      padding: 0px;
+      transition: all 150ms;
+      .fas {
+        width: 65px;
+      }
+      span.navicon {
+        font-size: 24px;
+        line-height: 65px;
+        width: 65px;
+        text-align: center;
+        margin: auto 0px;
+      }
+    }
+    .icon-text{
+      position: relative;
+      overflow: hidden;
+      width: 0px;
+      height: 65px;
+      margin: auto;
+      transition: all 150ms;
+      span {
+        position: absolute;
+        transition: all 150ms;
+        margin: 0px;
+        left: -50px;
+        line-height: 65px;
+      }
+    }
+  }
+  .hover:hover {
+    a {
+      max-width: 215px;
+    }
+    .icon-text{
+      width: 150px;
+      span{
+        left: 0px;
+      }
+    }
+  }
+}
+
+
+/*
+Navbar Settings for Mobile
+*/
+:host ::ng-deep  mat-toolbar {
+  z-index: 3;
+}
+
+:host ::ng-deep .isMobile .sidenav-bar:not(.notification-sidenav) {
+  flex: 1 0 auto;
+  height: 100vh;
+  overflow-y: hidden;
+  .mat-drawer-inner-container {
+    width: 250px;
+    z-index: 2;
+    margin-top: 10vh;
+    .fas {
+      text-align: center;
+      width: 24px;
+    }
+  }
+}
+
+:host ::ng-deep .isMobile .mat-drawer-content{
+  overflow-x: hidden;
+ .content-body {
+    min-height: 100%;
+  }
+}
+
+.mat-badge-small.mat-badge-above .mat-badge-content {
+  top: 30px;
+}
+.mat-badge-small.mat-badge-overlap.mat-badge-after .mat-badge-content{
+  right: 16px;
+}
+.mobileDevice span#mat-badge-content-0 {
+  top: 5px !important;
+  right: -3px !important;
+}
+
+.notification-sidenav{
+  position: fixed;
+  padding-top: 10vh;
+  // padding-top: 65px;
+  ::ng-deep .mat-drawer-inner-container{
+    display: block;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  }
+}

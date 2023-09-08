@@ -1,0 +1,22 @@
+<form [formGroup]="startFormGroup">
+  <p class="h3">Frühest möglicher Eintrittstermin?</p> 
+  <div class="question-content">
+    <!-- <input type="hidden" formControlName="earliestStartDate" value="{{selectedDate.toDateString()}}"> -->
+    <input type="hidden" formControlName="earliestStartDate" value="{{ selectedDate | date:'yyyy-MM-dd' }}">
+    <div class="row">
+      <mat-calendar class="col" style="max-width: 350px" [selected]="selectedDate" [startAt]="startAt"
+        [minDate]="minDate" [maxDate]="maxDate" [dateFilter]="DateFilter" (selectedChange)="onSelect($event)">
+      </mat-calendar>
+    </div>
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="startFormGroup.invalid" class="col" color="primary" mat-button matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

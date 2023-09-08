@@ -1,0 +1,35 @@
+<form [formGroup]="educationFormGroup">
+  <p class="h3 mt-3">Welche ist deine höchste Führerscheinklasse?</p>
+  <div class="question-content">
+    <mat-radio-group class="row" formControlName="educationCtrl" required>
+      <div class="col-lg-6">
+        <mat-radio-button labelPosition="before" value="CE">CE
+
+        </mat-radio-button>
+      </div>
+      <div class="col-lg-6">
+        <mat-radio-button labelPosition="before" value="C">C
+        </mat-radio-button>
+      </div>
+      <div class="col-lg-6">
+        <mat-radio-button labelPosition="before" value="C1E">C1E
+        </mat-radio-button>
+      </div>
+      <div class="col-lg-6">
+        <mat-radio-button labelPosition="before" value="C1">C1
+        </mat-radio-button>
+      </div>
+    </mat-radio-group>
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="educationFormGroup.invalid" class="col" color="primary" mat-button
+      matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

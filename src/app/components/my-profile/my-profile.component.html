@@ -1,0 +1,286 @@
+<mat-card class="{{isMobile ? 'profile-details-card-isMobile profile-details-card' : 'profile-details-card' }} " [class.isMobile]="isMobile">
+  <mat-card-content>
+    <!--    User basic details  -->
+    <div class="row">
+      <div class="col">
+        <h2 (click)="isMobile ? openDialog('BASIC_DETAILS') : false">
+          {{getUserProfile?.user.first_name + ' ' + getUserProfile?.user.last_name}}
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-11">
+        Tel: <span (click)="isMobile ? openDialog('BASIC_DETAILS') : false">
+          {{getUserProfile?.phone_number}}
+        </span>
+      </div>
+      <div class="col-1">
+        <span (click)="openDialog('BASIC_DETAILS')" style="cursor: pointer;"
+          class="fas fa-pencil-alt edit-icon size-17"></span>
+      </div>
+    </div>
+
+    <!--    <hr class="border-primary">-->
+    <mat-divider class="border-primary"></mat-divider>
+
+    <!--    Driving license -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('DRIVING_LICENSE') : false">Welche Führerscheinklasse hast du?</b>
+      </div>
+      <div class="row">
+        <div class="col-11">
+          <mat-chip-list>
+            <mat-chip (click)="isMobile ? openDialog('DRIVING_LICENSE') : false" color="primary" selected>
+              {{getUserProfile?.license}}</mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-1 ">
+          <span (click)="openDialog('DRIVING_LICENSE')" style="cursor: pointer;"
+            class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--   vehicle types experience -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('VEHICLE_TYPES_EXPERIENCE') : false">Mit welchen Fahrzeugtypen hast du bereits
+          Erfahrung?</b>
+      </div>
+      <div class="row" style="{{isMobile ? 'padding-left:5px; height: 120px;':'padding-left:5px;'}}">
+        <mat-chip-list *ngFor="let vehicleExperience of getUserProfile?.vehicle_experience">
+          <div class="col" *ngIf="vehicleExperience.value">
+            <mat-chip (click)="isMobile ? openDialog('VEHICLE_TYPES_EXPERIENCE') : false" color="primary" selected>
+              {{getVehicleExperience(vehicleExperience.name)}}</mat-chip>
+          </div>
+        </mat-chip-list>
+        <div class="col"></div>
+        <div class="col-1">
+          <span (click)="openDialog('VEHICLE_TYPES_EXPERIENCE')" style="cursor: pointer;"
+            class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--  Professional license   -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('PROFESSIONAL_LICENSE') : false">Besitzt du den Eintrag der Schlüsselzahl 95
+          nach dem BKrFQG?</b>
+      </div>
+      <div class="row">
+        <div class="col-11">
+          <mat-chip-list>
+            <mat-chip (click)="isMobile ? openDialog('PROFESSIONAL_LICENSE') : false"
+              *ngIf="getUserProfile?.professional_license" color="primary" selected>Ja
+            </mat-chip>
+            <mat-chip (click)="isMobile ? openDialog('PROFESSIONAL_LICENSE') : false"
+              *ngIf="!getUserProfile?.professional_license" color="primary" selected>Nein
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-1">
+          <span (click)="openDialog('PROFESSIONAL_LICENSE')" style="cursor: pointer;"
+            class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--  Do you have additional driver's licenses?   -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('ADDITIONAL_LICENSE') : false">Besitzt du zusätzliche Führerscheine?</b>
+      </div>
+      <div class="row " style="{{isMobile ? 'padding-left:5px; height: 160px;':'padding-left:5px;'}}">
+        <mat-chip-list *ngFor="let additionalLicense of getUserProfile?.additional_license">
+          <div class="col" *ngIf="additionalLicense.value">
+            <mat-chip (click)="isMobile ? openDialog('ADDITIONAL_LICENSE') : false" color="primary" selected>
+              {{getAdditionalLicense(additionalLicense.name)}}</mat-chip>
+          </div>
+        </mat-chip-list>
+        <div class="col"></div>
+        <div class="col-1">
+          <span (click)="openDialog('ADDITIONAL_LICENSE')" style="cursor: pointer;"
+            class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--  How many years of professional experience do you have as a truck driver?   -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('PROFESSIONAL_WORK_EXPERIENCE') : false">Wie viel Jahre Berufserfahrung hast
+          du als LKW-Fahrer?</b>
+      </div>
+      <div class="row">
+        <div class="col-11">
+          <mat-chip-list>
+            <mat-chip (click)="isMobile ? openDialog('PROFESSIONAL_WORK_EXPERIENCE') : false" color="primary" selected>
+              {{getUserProfile?.work_experience + ' Jahre'}}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-1">
+          <span (click)="openDialog('PROFESSIONAL_WORK_EXPERIENCE')" style="cursor: pointer;"
+            class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--   last two employers.   -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('EMPLOYER') : false">Damit wir wissen, was du bisher so gemacht hast, gib bitte deine letzten zwei Arbeitgeber an.</b>
+      </div>
+      <div class="row">
+        <div class="col-11">
+          <mat-chip-list>
+            <mat-chip (click)="isMobile ? openDialog('EMPLOYER') : false" color="primary" selected>
+              {{getUserProfile?.employer_1_year + ' : ' + getUserProfile?.employer_1}}
+            </mat-chip>
+            <mat-chip *ngIf="getUserProfile?.employer_2_year.length > 0" (click)="isMobile ? openDialog('EMPLOYER') : false" color="primary" selected>
+              {{getUserProfile?.employer_2_year + ' : ' +getUserProfile?.employer_2}}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-1">
+          <span (click)="openDialog('EMPLOYER')" style="cursor: pointer;"
+                class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--  You can imagine working in the following shifts   -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('WORKING_SHIFTS') : false">Du kannst dir vorstellen in folgenden Schichten zu
+          arbeiten</b>
+      </div>
+      <div class="row" style="{{isMobile ? 'padding-left:5px; height: 90px;':'padding-left:5px;'}}">
+        <mat-chip-list *ngFor="let shift of getUserProfile?.shift">
+          <div class="col" *ngIf="shift.value">
+            <mat-chip (click)="isMobile ? openDialog('WORKING_SHIFTS') : false" color="primary" selected>
+              {{getShift(shift.name)}}</mat-chip>
+          </div>
+        </mat-chip-list>
+        <div class="col"></div>
+        <div class="col-1">
+          <!-- <mat-icon class="edit-icon" (click)="openDialog('WORKING_SHIFTS')"
+                    style="cursor: pointer;">edit
+          </mat-icon> -->
+          <span (click)="openDialog('WORKING_SHIFTS')" style="cursor: pointer;"
+            class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--  Which tours do you want to do?   -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('TOURS') : false">Welche Touren willst du fahren?</b>
+      </div>
+      <div class="row" style="padding-left:5px; justify-content: flex-end;">
+        <mat-chip-list *ngFor="let tour of getUserProfile?.tours">
+          <div class="col" *ngIf="tour.value">
+            <mat-chip (click)="isMobile ? openDialog('TOURS') : false" color="primary" selected>{{getTour(tour.name)}}
+            </mat-chip>
+          </div>
+        </mat-chip-list>
+        <div class="col"></div>
+        <div class="col-1">
+          <span (click)="openDialog('TOURS')" style="cursor: pointer;"
+            class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--  Earliest possible starting date?   -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('EARLIEST_START_DATE') : false">Frühest möglicher Eintrittstermin?</b>
+      </div>
+      <div class="row">
+        <div class="col-11">
+          <mat-chip-list>
+            <mat-chip (click)="isMobile ? openDialog('EARLIEST_START_DATE') : false" color="primary" selected>
+              {{ getUserProfile?.start_work | date:'dd.MM.yyyy' }}</mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-1">
+          <span (click)="openDialog('EARLIEST_START_DATE')" style="cursor: pointer;"
+            class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--  What is the maximum distance you want to work from where you live?   -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('DISTANCE') : false">Wie weit soll die Arbeitsstelle maximal von deinem
+          Wohnort entfernt sein?</b>
+      </div>
+      <div class="row">
+        <div class="col-11">
+          <mat-chip-list>
+            <mat-chip (click)="isMobile ? openDialog('DISTANCE') : false" color="primary" class="mx-1" selected>
+              {{getUserProfile?.postcode}}</mat-chip>
+            <mat-chip (click)="isMobile ? openDialog('DISTANCE') : false" color="primary" class="mx-1" selected>
+              {{getUserProfile?.distance + ' KM'}}</mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-1">
+          <span (click)="openDialog('DISTANCE')" style="cursor: pointer;"
+            class="fas fa-pencil-alt edit-icon size-17"></span>
+        </div>
+      </div>
+    </div>
+
+    <!--  What about your language skills?   -->
+    <div class="my-3">
+      <div class="name-detail">
+        <b (click)="isMobile ? openDialog('LANGUAGE') : false">Wie sieht es mit deinen Sprachkenntnissen aus?</b>
+      </div>
+      <div *ngFor="let lan of getUserProfile?.language; let i = index;">
+        <div class="row my-3" style="padding-left:5px;">
+          <mat-chip-list>
+            <div class="col-4">
+              <mat-chip color="primary" (click)="isMobile ? openDialog('LANGUAGE') : false" selected>
+                {{getLanguage(lan.name)}}</mat-chip>
+            </div>
+            <div class="col-4">
+              <mat-chip color="accent" (click)="isMobile ? openDialog('LANGUAGE') : false" class="ml-5" selected>
+                {{getRatings(lan.rating)}}</mat-chip>
+            </div>
+            <div class="col-3">
+              <mat-chip color="accent" (click)="isMobile ? openDialog('LANGUAGE') : false" selected>
+                <span *ngIf="lan.rating == 1" class="mt-2 ">
+                  <span  class="fas fa-circle fa-xs">&nbsp;</span>
+                  <span  class="far fa-circle fa-xs">&nbsp;</span>
+                  <span  class="far fa-circle fa-xs"></span>
+                </span>
+                <span *ngIf="lan.rating == 2" class="mt-2 ">
+                  <span  class="fas fa-circle fa-xs">&nbsp;</span>
+                  <span  class="fas fa-circle fa-xs">&nbsp;</span>
+                  <span  class="far fa-circle fa-xs"></span>
+                </span>
+                <span *ngIf="lan.rating == 3" class="mt-2 ">
+                  <span  class="fas fa-circle fa-xs">&nbsp;</span>
+                  <span  class="fas fa-circle fa-xs">&nbsp;</span>
+                  <span  class="fas fa-circle fa-xs"></span>
+                </span>
+              </mat-chip>
+            </div>
+          </mat-chip-list>
+          <div class="col"></div>
+          <div class="col-1" *ngIf="getUserProfile.language.length == i+1">
+            <span (click)="openDialog('LANGUAGE')" style="cursor: pointer;"
+              class="fas fa-pencil-alt edit-icon size-17"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </mat-card-content>
+</mat-card>

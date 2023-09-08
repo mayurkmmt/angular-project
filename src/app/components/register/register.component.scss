@@ -1,0 +1,22 @@
+.question-content {
+    margin: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+:host ::ng-deep .button-area {
+    //width: 50% !important;
+    button {
+        line-height: 48px;
+    }
+}
+p.h3 {
+    text-align: center;
+}
+:host ::ng-deep .row.first {
+    justify-content: center !important;
+    .col.first {
+        max-width: 1000px !important; 
+    }
+}

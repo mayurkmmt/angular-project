@@ -1,0 +1,69 @@
+<div class="all" [class.isNotMobile]="!isMobile" [class.isMobile]="isMobile">
+  <app *ngIf="seoJobId" [seoJobId]="seoJobId"></app>
+  <mat-toolbar class="toolbox navbar fixed-top">
+    <div class="row row-no-gutters" style="width:100vw">
+      <a class="navbar-brand col-lg-3 col-sm-6 col-6 col-md-6"
+         href="{{isCompany ?'/company':'dashboard'}}"
+         style="padding: 0 0 0 65px; margin-top: auto; margin-bottom: auto; max-width: 300px;">
+        <img *ngIf="isMobile" src="./assets/Logogreen.png" width="150%" height="auto" class="d-inline-block" alt="">
+        <img *ngIf="!isMobile" src="./assets/Logogreen.png" width="100%" height="auto" class="d-inline-block" alt="">
+      </a>
+      <div class="col-lg-6" *ngIf="!isMobile" style="display: flex;
+  justify-content: center;
+  align-items: center; ">
+        <app-header></app-header>
+      </div>
+      <div class="col-4 col-md-4 col-sm-4" *ngIf="isMobile"></div>
+      <div *ngIf="isMobile" class="col-1 col-md-1 col-sm-1" (click)="snav.toggle()" style="text-align: right;">
+        <span class="fas fa-2x fa-bars" *ngIf="!snav.opened" style="margin-top: 2px; margin-bottom: 0px"></span>
+        <span class="fas fa-2x fa-times" *ngIf="snav.opened" style="margin-top: 2px; margin-bottom: 0px"></span>
+      </div>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container [class.desktop]="!isMobile" class="transparent">
+    <mat-sidenav #snav disableClose:True [disableClose]='!isMobile' [mode]="getSideNavmode()" align="end"  opened="{{!isMobile || false }}" fixedInViewport="true"
+                 [class.transparent]="!isMobile" class="sidenav-bar" id="sidenav-bar" (click)="mobileNavCLose()">
+      <div class="hover" style="background-color:white;" (onClick)="isMobileClose()">
+        <mat-nav-list *ngIf="loggedInUser">
+                  <!-- <a *ngIf="loggedInUser.role == 3" mat-list-item (click)="sidenav2.toggle()" routerLinkActive="active" -->
+          <!-- <a *ngIf="loggedInUser.role == 2" (click)="drawer.toggle()" mat-list-item  (click)="toggle()" > -->
+          <a *ngIf="!isRedirectPage && !isLoginPage && !isRegisterPage && !isResetPasswordPage && !isCompanyLogin && !isRegisterCompany && !isPublicJobOverview"
+             (click)="drawer.toggle()" mat-list-item  (click)="toggle()" >
+          <span *ngIf="unreadCount > 0"  matBadge="{{ unreadCount }}" matBadgeSize="small" matBadgeColor="warn"
+            class="{{isMobile?'mobileDevice fas fa-bell navicon fa-notification':'fas fa-bell navicon fa-notification'}}"></span>
+          <span *ngIf="unreadCount == 0" class="{{isMobile?'mobileDevice fas fa-bell navicon fa-notification':'fas fa-bell navicon fa-notification'}}"></span>
+          <div class="icon-text">
+            <span>Benachrichtigungen</span>
+          </div>
+        </a>
+        <!-- <a *ngIf="loggedInUser.role == 3" (click)="drawer.toggle()" mat-list-item (click)="toggle()" >
+          <span *ngIf="unreadCount > 0" matBadge="{{ unreadCount }}" matBadgeSize="small" matBadgeColor="warn"
+            class="{{isMobile?'mobileDevice fas fa-bell navicon fa-notification':'fas fa-bell navicon fa-notification'}}"></span>
+            <span *ngIf="unreadCount == 0" class="{{isMobile?'mobileDevice fas fa-bell navicon fa-notification':'fas fa-bell navicon fa-notification'}}"></span>
+          <div class="icon-text">
+            <span>Benachrichtigungen</span>
+          </div>
+        </a> -->
+        <app-navbar (logoutEmiterNavbar)="logoutEmiter($event)" (loginEmiterNavbar)="loginEmiter($event)" (msgToSibling2)="fwdMsgToSib3($event)" *ngIf="!isRedirectPage && !isLoginPage && !isRegisterPage && !isResetPasswordPage && !isCompanyLogin && !isRegisterCompany && !isPublicJobOverview
+"></app-navbar>
+      </mat-nav-list>
+        <app-form-navbar *ngIf="isRegisterPage"></app-form-navbar>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="main-container">
+      <div class="content-body">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- <mat-sidenav class="notification-sidenav" id="notification-sidenav" #sidenav2 mode="side" opened="{{ visible}}"> -->
+      <!-- <mat-sidenav hasBackdrop="true" class="notification-sidenav" id="notification-sidenav" align="top"  [mode]="getSideNavmode()" opened="{{ visible}}">
+        <app-company-notifications  (msgToSibling)="fwdMsgToSib2($event)" (msgToSibling2)="fwdMsgToSib3($event)" ></app-company-notifications>
+      </mat-sidenav> -->
+      <mat-drawer #drawer class="notification-sidenav" id="notification-sidenav" align="top"  [mode]="getSideNavmode()" opened="{{ visible}}">
+        <app-company-notifications  (msgToSibling)="fwdMsgToSib2($event)" (msgToSibling2)="fwdMsgToSib3($event)" ></app-company-notifications>
+      </mat-drawer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+

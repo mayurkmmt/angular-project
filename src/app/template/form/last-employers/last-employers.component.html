@@ -1,0 +1,44 @@
+<form [formGroup]="lastEmployerFormGroup">
+  <p class="h3">Damit wir wissen, was du bisher so gemacht hast, gib bitte deine letzten zwei Arbeitgeber an.</p>
+  <div class="question-content">
+    <div class="row">
+      <div class="col-lg-3 align-self-center">
+        <mat-form-field>
+          <input matInput class="no-controls" formControlName="employer_1_year" type="text"
+                 placeholder="2017-2019">
+        </mat-form-field>
+      </div>
+      <div class="col-lg-9" style="display:inline-flex">
+        <mat-form-field>
+          <input matInput class="no-controls" formControlName="employer_1" type="text"
+                 placeholder="Kramer Logistik, Heilbronn; LKW Fahrer für Überseecontainer">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 align-self-center">
+        <mat-form-field>
+          <input matInput class="no-controls" formControlName="employer_2_year" type="text"
+                 placeholder="2015-2017">
+        </mat-form-field>
+      </div>
+      <div class="col-lg-9" style="display:inline-flex">
+        <mat-form-field>
+          <input matInput class="no-controls" formControlName="employer_2" type="text"
+                 placeholder="Mustermann Spedition, Würzburg; 40to LKW Fahrer">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="lastEmployerFormGroup.invalid" class="col" color="primary" mat-button
+             matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

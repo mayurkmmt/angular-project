@@ -1,0 +1,88 @@
+<mat-card>
+  <mat-card-content class="border-0">
+    <!--   Person Form -->
+    <app-person
+      *ngIf="action === 'BASIC_DETAILS'"
+      [formGroup]="personFormGroup"
+      [selectedBirthYear] = selectedBirthYear
+    >
+    </app-person>
+
+    <!--   Driving license -->
+    <app-education
+      *ngIf="action === 'DRIVING_LICENSE'"
+      [formGroup]="educationFormGroup">
+    </app-education>
+
+    <!--   vehicle types experience -->
+    <app-vehicle-experience
+      *ngIf="action === 'VEHICLE_TYPES_EXPERIENCE'"
+      [formGroup]="vehicleExperienceFormGroup">
+    </app-vehicle-experience>
+
+    <!--   EMPLOYER -->
+    <app-last-employers
+      *ngIf="action === 'EMPLOYER'"
+      [formGroup]="employerFormGroup">
+    </app-last-employers>
+
+    <!--  Professional license   -->
+    <app-driver-qualification
+      *ngIf="action === 'PROFESSIONAL_LICENSE'"
+      [formGroup]="driverQualificationFormGroup">
+    </app-driver-qualification>
+
+    <!--  Do you have additional driver's licenses?   -->
+    <app-further-education
+      *ngIf="action === 'ADDITIONAL_LICENSE'"
+      [formGroup]="furtherEducationFormGroup">
+    </app-further-education>
+
+    <!--  How many years of professional experience do you have as a truck driver?   -->
+    <app-work-experience
+      *ngIf="action === 'PROFESSIONAL_WORK_EXPERIENCE'"
+      [formGroup]="workExperienceFormGroup">
+    </app-work-experience>
+
+    <!--  You can imagine working in the following shifts   -->
+    <app-working-shifts
+      *ngIf="action === 'WORKING_SHIFTS'"
+      [formGroup]="shiftsFormGroup">
+    </app-working-shifts>
+
+    <!--  Which tours do you want to do?   -->
+    <app-tours
+      *ngIf="action === 'TOURS'"
+      [formGroup]="toursFormGroup">
+    </app-tours>
+
+    <!--  Earliest possible starting date?   -->
+    <app-earliest-start-date
+      *ngIf="action === 'EARLIEST_START_DATE'"
+      [formGroup]="startFormGroup"
+      [earliestStartDate]=earliestStartDate
+      (onDatePicked)="getEarliestStartDate($event)">
+    </app-earliest-start-date>
+
+    <!--  What is the maximum distance you want to work from where you live?   -->
+    <app-postcode
+      *ngIf="action === 'DISTANCE'"
+      [formGroup]="locationFormGroup"
+      [distance]="distance"
+    >
+    </app-postcode>
+
+    <!--  What about your language skills?   -->
+    <app-language
+      *ngIf="action === 'LANGUAGE'"
+      [formGroup]="languageFormGroup"
+      [languageObj]="languageObj"
+    >
+    </app-language>
+
+  </mat-card-content>
+  <mat-card-footer class="text-right border-0">
+    <button mat-raised-button class="mx-1" color="accent" mat-dialog-close>Abbrechen</button>
+    <button mat-raised-button class="mx-1" color="primary" (click)="updateProfile()" [mat-dialog-close]="true">Speichern</button>
+  </mat-card-footer>
+</mat-card>

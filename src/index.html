@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <title>JobPortal</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="icon" type="image/png" href="assets/favicon_white_green.png">
+  <!--  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">-->
+  <!--  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|" rel="stylesheet">-->
+  <!--  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">-->
+  <link href="assets/google_font.css" rel="stylesheet">
+  <link href="./assets/font/gfont.css" rel="stylesheet">
+  <link href="./assets/font/material-icons.css" rel="stylesheet">
+  <!--  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />-->
+  <!--  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>-->
+  <link rel="stylesheet" type="text/css" href="assets/cookieconsent.min.css" />
+  <script src="assets/cookieconsent.min.js"></script>
+  <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDyAyAdNh-HHZwP-TuJkgCID81RE6UQRQ&libraries=places&language=en"></script>
+  <!-- Matomo -->
+  <script type="text/javascript">
+    if (navigator.cookieEnabled) {
+      var _paq = _paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      // _paq.push(['trackPageView']); // DELETE THIS LINE
+      // _paq.push(['MediaAnalytics::disableMediaAnalytics']);
+      _paq.push(['enableLinkTracking']);
+      // _paq.push(['requireConsent']);
+      (function () {
+        var u = "//stats.jobportal.com/";
+        _paq.push(['setTrackerUrl', u + 'piwik.php']);
+        _paq.push(['setSiteId', '2']);
+        var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+        g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
+      })();
+    }
+
+    // // const scriptNode1 = document.createElement('link');
+    // const scriptNode2 = document.createElement('link');
+    // // scriptNode1.href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500";
+    // scriptNode2.href = "https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|";
+    // // scriptNode1.rel = 'stylesheet';
+    // scriptNode2.rel = 'stylesheet';
+    // // document.getElementsByTagName('head')[0].appendChild(scriptNode1);
+    // document.getElementsByTagName('head')[0].appendChild(scriptNode2);
+  </script>
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<form [formGroup]="personFormGroup">
+  <p class="h3">Persönliche Angaben:</p>
+  <div class="question-content">
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Vorname" formControlName="firstName" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Nachname" formControlName="lastName" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Geburtsjahr</mat-label>
+      <mat-select formControlName="birthYear">
+        <mat-option *ngIf="selectedBirthYear" [value]="selectedBirthYear">{{selectedBirthYear}}</mat-option>
+        <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="!isEnable">
+      <input matInput type="text" placeholder="Telefonnummer" formControlName="phone" required>
+    </mat-form-field> 
+    
+    <div class="row no-gutters" *ngIf="isEnable">
+      <div class="col-2 mr-1" style="max-width: 18%">
+        <div class="phoneDropdown">
+          <mat-form-field class="w-100" appearance="outline">
+            <input matInput ng2TelInput type="text"
+                   (hasError)="hasError($event)"
+                   (ng2TelOutput)="getNumber($event)"
+                   (intlTelInputObject)="telInputObject($event)"
+                   (countryChange)="onCountryChange($event)"
+                   formControlName="dial_code"
+                   required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col">
+        <div class="phoneDropdown">
+          <mat-form-field class="w-100" appearance="outline">
+            <input matInput
+                   formControlName="phone"
+                   (keyup)="checkZero($event)"
+                   placeholder="Telefonnummer"
+                   required style="width: 91%">
+            <i class="far fa-grin"></i>
+            <mat-hint>Die Nummer darf nicht mit 0 beginnen. Die Ländervorwahl ist bereits ausgewählt.</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+<!--    <div class="row" *ngIf="isError">-->
+<!--      <div class="col">-->
+<!--        <p class="text-danger">{{errorMessage}}</p>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="personFormGroup.invalid" class="col" color="primary" mat-button matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

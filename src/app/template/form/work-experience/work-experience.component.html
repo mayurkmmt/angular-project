@@ -1,0 +1,31 @@
+<form [formGroup]="workExperienceFormGroup">
+  <p class="h3">Wie viel Jahre Berufserfahrung hast du als LKW-Fahrer?</p>
+  <div class="question-content">
+    <div class="row">
+      <div class="col-lg-7 align-self-center">
+        <mat-slider #mySlider (input)="myInput.value = mySlider.value" formControlName="sliderValue" style="width: 100%" thumbLabel tickInterval="1" min="0"
+          max="30" step="1"></mat-slider>
+      </div>
+      <div class="col-lg-2 align-self-center pt-2">
+        <p>{{ mySlider.value | json }} Jahre</p>
+      </div>
+      <div class="col-lg-3" style="display:inline-flex">
+        <mat-form-field class="align-self-center ">
+          <input class="no-controls" (change)="setMaxValue($event)"  matInput #myInput (input)="mySlider.value = myInput.value" type="number" formControlName="sliderValue"
+                 min="0" max="30" placeholder="Erfahrung" >
+          <span matSuffix> Jahre</span>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="workExperienceFormGroup.invalid" class="col" color="primary" mat-button matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

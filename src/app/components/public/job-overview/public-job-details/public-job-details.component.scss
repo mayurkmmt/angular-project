@@ -1,0 +1,161 @@
+@import "../../../../../styles";
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  //overflow: auto;
+  //max-height: 29rem;
+}
+
+.mat-card-content {
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.match-details .mat-card-content {
+  padding: 20px;
+  width: 100%;
+  flex-grow: 1;
+}
+
+//::-webkit-scrollbar {
+//  width: 0;
+//  background: transparent; /* make scrollbar transparent */
+//}
+
+.mat-card-header {
+  //color: white;
+  //background: $primary;
+  vertical-align: middle;
+
+  .mat-card-title {
+    margin: 0.5rem 0;
+  }
+}
+
+.isMobile ul {
+  padding-left: 15px;
+  line-height: 1rem;
+
+  li {
+    padding: 3.5px 7px;
+
+    .col-6 {
+      margin: 0;
+    }
+  }
+}
+
+.match-details {
+  padding: 0;
+  margin: 0;
+  background-color: $background;
+}
+
+:host ::ng-deep .sticky {
+  position: sticky;
+  position: -webkit-sticky;
+  bottom: 0 !important;
+  background: white !important;
+  box-shadow: 0 0 30px #FFFFFF !important;
+}
+
+li {
+  font-size: 16px;
+}
+
+:host ::ng-deep .mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.key-facts {
+  margin: 0.5rem 0 0 0;
+
+  p {
+    margin: 3px 0;
+  }
+}
+
+.first-key-facts {
+  margin: 30px 0 0 0;
+
+  p {
+    margin: 3px 0;
+  }
+}
+
+a.back {
+  text-decoration: none;
+}
+
+span.musthave {
+  vertical-align: top;
+  margin: 0.25rem 1rem 0 1rem;
+  font-size: 0.5rem;
+  padding: 0 0.15rem;
+  border-radius: 1.5px;
+  border-width: 1px;
+  line-height: 0.75rem;
+  border-style: solid;
+  border-color: red;
+}
+
+.skillarea {
+  span.icon {
+    margin: 0 3px;
+  }
+}
+
+.icon-box {
+  display: table-row;
+
+  .child {
+    display: table-cell;
+    vertical-align: middle;
+    min-width: 70px;
+  }
+}
+
+.isMobile .icon-table .col-12 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  // width: 100%;
+}
+
+div:not(.isMobile) .icon-table {
+  .col {
+    padding: 1rem;
+  }
+
+  .col:first-child {
+    border-width: 0 1px 0 0;
+    border-style: solid;
+    border-color: #eaeaea;
+  }
+
+  .col:nth-child(n+3):nth-child(odd) {
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    border-color: #eaeaea;
+  }
+
+  .col:nth-child(n+3):not(:nth-child(odd)) {
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #eaeaea;
+  }
+}
+
+mat-card-actions.mat-card-actions.buttomSpace.text-center {
+  margin-bottom: 45px;
+}
+
+// .stickys {
+//   position: fixed;
+//   bottom: 0 !important;
+//   background: white !important;
+//   padding-left: 25%;
+//   box-shadow: 0 0 30px #FFFFFF !important;
+// }

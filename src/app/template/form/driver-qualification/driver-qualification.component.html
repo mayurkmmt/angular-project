@@ -1,0 +1,26 @@
+<form [formGroup]="driverQualificationFormGroup">
+  <p class="h3">Besitzt du den Eintrag der Schlüsselzahl 95 nach dem BKrFQG?</p>
+  <div class="question-content">
+    <mat-radio-group class="row" formControlName="driverQualification" required>
+      <div class="col-lg-6">
+        <mat-radio-button labelPosition="before" value="YES">Ja
+        </mat-radio-button>
+      </div>
+      <div class="col-lg-6">
+        <mat-radio-button labelPosition="before" value="NO">Nein
+        </mat-radio-button>
+      </div>
+    </mat-radio-group>
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="driverQualificationFormGroup.invalid" class="col" color="primary" mat-button
+            matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

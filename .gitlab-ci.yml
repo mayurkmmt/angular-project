@@ -1,0 +1,31 @@
+
+before_script:
+  - pwd
+stages:
+  - build
+  - deploy
+  
+build:
+  stage: build
+  script:
+    - echo "start that thing"
+    - pwd
+    - npm -v
+    - npm install
+    - ng build --prod --aot
+    - echo "finiished"
+  artifacts:
+    paths:
+      - dist/
+  tags:
+    - node
+
+
+deploy:
+  stage: deploy
+  script:
+    - lftp -e "set ssl:verify-certificate no; open 188.40.218.151; user $FTP_USERNAME $FTP_PASSWORD; mirror -X .* -X .*/ --reverse --verbose --delete dist/ /; bye"
+  tags:
+    - node
+  only:
+    - master

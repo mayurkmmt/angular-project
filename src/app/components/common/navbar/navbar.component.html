@@ -1,0 +1,48 @@
+<!-- <mat-nav-list> -->
+  <!-- <a *ngIf="isApplier" mat-list-item routerLink="/notification" routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: false }">
+  <span matBadge="0" matBadgeSize="small" matBadgeColor="warn" class="{{isMobile?'mobileDevice fas fa-bell navicon fa-notification':'fas fa-bell navicon fa-notification'}}"></span>
+ <div class="icon-text">
+   <span>Benachrichtigung</span>
+ </div>
+</a>
+<a *ngIf="!isApplier" mat-list-item routerLink="/notifications" routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: false }">
+<span matBadge="0" matBadgeSize="small" matBadgeColor="warn" class="{{isMobile?'mobileDevice fas fa-bell navicon fa-notification':'fas fa-bell navicon fa-notification'}}"></span>
+<div class="icon-text">
+ <span>Benachrichtigung</span>
+</div>
+</a> -->
+  <a mat-list-item routerLink="{{isApplier?'/dashboard':'/company'}}" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: false }">
+    <span class="fas fa-newspaper navicon"></span>
+    <div class="icon-text">
+      <span>{{isApplier ? 'Neue Stellen' : 'Kandidaten'}}</span>
+    </div>
+  </a>
+  <a *ngIf="isApplier" mat-list-item routerLink="/applications" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: false }">
+    <span class="fas fa-paper-plane navicon"></span>
+    <div class="icon-text">
+      <span>Bewerbungen</span>
+    </div>
+  </a>
+  <a mat-list-item routerLink="{{isApplier?'/my-profile':companyProfileUrl}}" routerLinkActive="active">
+    <span class="fas fa-user navicon"></span>
+    <div class="icon-text">
+      <span>{{isApplier ? 'Mein Profil' : 'Unternehmensprofil'}}</span>
+    </div>
+  </a>
+  <a *ngIf="!isUserLoggedIn" mat-list-item routerLink="/login" routerLinkActive="active">
+    <span class="fas fa-sign-out-alt navicon"></span>
+    <div class="icon-text">
+      <span>Einloggen</span>
+    </div>
+  </a>
+  <a *ngIf="isUserLoggedIn" mat-list-item (click)="logout()" routerLinkActive="active">
+    <span class="fas fa-sign-out-alt navicon"></span>
+    <div class="icon-text">
+      <span>Abmelden</span>
+    </div>
+  </a>
+<!-- </mat-nav-list> -->

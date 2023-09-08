@@ -1,0 +1,32 @@
+<form [formGroup]="shiftsFormGroup">
+  <p class="h3">Du kannst dir vorstellen in folgenden Schichten zu arbeiten</p>
+  <div class="question-content">
+    <div class="mat-check-group row">
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="day" value="day">Tagesschicht (Mo.-Fr.)
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="night" value="night">Nachtschicht (Mo.-Fr.)
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="all" value="all">Wechselschicht
+          (Mo.-Fr.)</mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox labelPosition="before" formControlName="weekend" value="weekend">Wochenende</mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="shiftsFormGroup.invalid" class="col" color="primary" mat-button matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

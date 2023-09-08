@@ -1,0 +1,66 @@
+<form [formGroup]="furtherEducationFormGroup">
+  <p class="h3">Welche zusätzlichen (Führer-) Scheine besitzt du?</p>
+  <div class="question-content">
+    <div class="mat-check-group row">
+      <div class="col-lg-6">
+        <mat-checkbox checked labelPosition="before"
+                      (change)="onValueChange($event)"
+                      (change)="toggleEditable($event)"
+                      formControlName="NO_LICENSE" value="NO_LICENSE">
+          Keinen weiteren Führerschein</mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox checked labelPosition="before"
+                      [attr.disabled]="isAdditionalLicense"
+                       (change)="onValueChange($event)"
+                      formControlName="FORKLIFT" value="FORKLIFT">
+          Staplerführerschein</mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox checked labelPosition="before"
+                      [attr.disabled]="isAdditionalLicense"
+                       (change)="onValueChange($event)"
+                      formControlName="CRANE" value="CRANE">Kranführerschein
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox checked labelPosition="before"
+                      [attr.disabled]="isAdditionalLicense"
+                       (change)="onValueChange($event)"
+                      formControlName="ADR_BASIC" value="ADR_BASIC">ADR-Basis</mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox checked labelPosition="before"
+                      [attr.disabled]="isAdditionalLicense"
+                       (change)="onValueChange($event)"
+                      formControlName="ADR_TANK" value="ADR_TANK">ADR-Tank
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox checked labelPosition="before"
+                      [attr.disabled]="isAdditionalLicense"
+                       (change)="onValueChange($event)"
+                      formControlName="ADR_EXPLOSIVE" value="ADR_EXPLOSIVE">ADR-Explosiv
+        </mat-checkbox>
+      </div>
+      <div class="col-lg-6">
+        <mat-checkbox checked labelPosition="before"
+                      [attr.disabled]="isAdditionalLicense"
+                       (change)="onValueChange($event)"
+                      formControlName="ADR_RADIOACTIVE" value="ADR_RADIOACTIVE">ADR-Radioaktiv
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="furtherEducationFormGroup.invalid" class="col" color="primary" mat-button
+      matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

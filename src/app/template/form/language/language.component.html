@@ -1,0 +1,17 @@
+<form [formGroup]="languageFormGroup">
+  <p class="h3">Wie sieht es mit deinen Sprachkenntnissen aus?</p>
+  <div class="question-content">
+    <rating-checkbox formControlName="german">Deutsch</rating-checkbox >
+    <rating-checkbox formControlName="english">Englisch</rating-checkbox >
+  </div>
+  <div class="button-area row" *ngIf="isEnable">
+    <div class="col-lg-6"></div>
+    <button mat-flat-button class="col" mat-button matStepperPrevious>
+      <span class="icon-text-button">Zurück</span>
+    </button>
+    <button mat-flat-button [disabled]="languageFormGroup.invalid" class="col" color="primary" mat-button matStepperNext>
+      <span class="icon-text-button">Weiter</span>
+      <span class="fas fa-chevron-right"></span>
+    </button>
+  </div>
+</form>

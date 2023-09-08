@@ -1,0 +1,18 @@
+@import "./src/styles";  
+
+:host ::ng-deep .mat-card {
+    box-shadow: 0px 0px 0px 0px;
+    border-width: 1px;
+    border-color: black;
+}
+
+:host ::ng-deep .mat-card.left {
+    background: $primary;
+    margin: 0.5vw 3vw 0.5vw 0vw;
+    color: white;
+}
+
+:host ::ng-deep .mat-card.right {
+    background: $accent;
+    margin: 0.5vw 0vw 0.5vw 3vw;
+}

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-lg-3" (click)="showContent(3)">
+    <span>Office Programme</span>
+  </div>
+  <div class="col-lg-7" (click)="showContent(3)">
+    <div class="skillarea" *ngIf="!visible; else showSlider">
+      <span *ngFor="let key of ['0','1','2']" class="icon fa-circle"
+        [ngClass]="{'fas': key < 3, 'far': key >= 3}"></span>
+    </div>
+    <ng-template #showSlider>
+      <app-checkboxprofil [valrating]="valrating"></app-checkboxprofil>
+    </ng-template>
+  </div>
+  <button class="col-lg-2 col" mat-button style="color: red" *ngIf="visible" (click)="hideContent()">
+    Speichern
+  </button>
+  <button class="col-lg-2 col" mat-button *ngIf="!visible" (click)="showContent(3)">
+    Bearbeiten
+  </button>
+</div>

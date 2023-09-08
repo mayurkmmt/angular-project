@@ -1,0 +1,20 @@
+<mat-spinner *ngIf="isSpinner"></mat-spinner>
+<div class="row not-scrollable" [class.isMobile]="isMobile">
+  <div class="{{isMobile?'not-scrollable-content mt-5':'not-scrollable-content'}}">
+    <!--    <div class="col scrollable" [ngClass]="{'col':!matchId, 'col-lg-5':matchId}" *ngIf="matchId && !isMobile  || !matchId">-->
+    <div class="col-4 scrollable" *ngIf="jobId && !isMobile  || !jobId">
+      <app-public-job-list jobId="{{jobId}}"></app-public-job-list>
+<!--      <div class="row mt-2" *ngIf="jobList?.count > 10">-->
+<!--        <div class="col text-center">-->
+<!--          <button mat-button *ngIf="jobList?.previous" class="mx-2" (click)="getWithParams(jobList.previous)" style="background-color: #1d8552; color:white;">Previous</button>-->
+<!--          <button mat-button *ngIf="jobList?.next" class="mx-2"  (click)="getWithParams(jobList.next)" style="background-color: #1d8552; color:white;">Next</button>-->
+<!--        </div>-->
+<!--      </div>-->
+    </div>
+    <div class="col scrollable" *ngIf="jobId">
+      <!--      <app-job-display jobId="{{jobId}}"></app-job-display>-->
+      <!--      <app-public-job-details></app-public-job-details>-->
+      <app-public-job-details jobId="{{jobId}}"></app-public-job-details>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col" (click)="showContent()">
+    <mat-form-field class="example-chip-list" [class.noBorder]="!selectable">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let edu of furtheredu" (click)="showContent()" [selectable]="selectable" [removable]="removable"
+          (removed)="remove(edu)">
+          {{edu}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Weiterbildung hinzufügen..." #chipInput [formControl]="furthereduCtrl"
+          [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let edu of filteredFurtheredu | async" [value]="furtheredu">
+          {{edu}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <button class="col-lg-2 col" mat-button style="color: red" *ngIf="selectable" (click)="hideContent()">
+    Speichern
+  </button>
+  <button class="col-lg-2 col" mat-button *ngIf="!selectable" (click)="showContent()">
+    Bearbeiten
+  </button>
+</div>

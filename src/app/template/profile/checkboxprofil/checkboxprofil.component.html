@@ -1,0 +1,7 @@
+
+  <div class="row" style="width: 100%">
+    <p class="col-lg-4 col-xs-6">{{ slidervalue }}</p>
+    <mat-slider [(ngModel)]="valrating" #slider min="0" max="3" step="1" class="col" tickInterval="1" (input)='changeMatslider($event)'>
+    </mat-slider>
+  </div>
+

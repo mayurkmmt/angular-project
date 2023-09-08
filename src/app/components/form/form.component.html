@@ -1,0 +1,102 @@
+<div class="row" [class.isMobile]="isMobile">
+  <div>
+    <mat-vertical-stepper [linear]="true" #stepper [selectedIndex]="stepperService.index.value"
+      (selectionChange)="updateStepper($event)" class="col stepper"
+      style="{{stepperService.index.value == 13 ? 'max-width: 400px; padding: 0px;':'max-width: 750px; padding: 0px;'}}">
+
+      <mat-step [stepControl]="educationFormGroup">
+        <app-education [formGroup]="educationFormGroup"></app-education>
+      </mat-step>
+      <mat-step [stepControl]="driverQualificationFormGroup">
+        <app-driver-qualification [formGroup]="driverQualificationFormGroup"></app-driver-qualification>
+      </mat-step>
+      <mat-step [stepControl]="vehicleExperienceFormGroup">
+        <app-vehicle-experience [formGroup]="vehicleExperienceFormGroup"></app-vehicle-experience>
+      </mat-step>
+      <mat-step [stepControl]="furtherEducationFormGroup">
+        <app-further-education [formGroup]="furtherEducationFormGroup"></app-further-education>
+      </mat-step>
+      <mat-step [stepControl]="workExperienceFormGroup">
+        <app-work-experience [formGroup]="workExperienceFormGroup"></app-work-experience>
+      </mat-step>
+      <mat-step [stepControl]="lastEmployerFormGroup">
+        <app-last-employers [formGroup]="lastEmployerFormGroup"></app-last-employers>
+      </mat-step>
+      <mat-step [stepControl]="shiftsFormGroup">
+        <app-working-shifts [formGroup]="shiftsFormGroup"></app-working-shifts>
+      </mat-step>
+      <mat-step [stepControl]="toursFormGroup">
+        <app-tours [formGroup]="toursFormGroup"></app-tours>
+      </mat-step>
+      <mat-step [stepControl]="startFormGroup">
+        <app-earliest-start-date [formGroup]="startFormGroup"
+          (onDatePicked)="getEarliestStartDate($event)"></app-earliest-start-date>
+      </mat-step>
+      <mat-step [stepControl]="locationFormGroup">
+        <app-postcode [formGroup]="locationFormGroup"></app-postcode>
+      </mat-step>
+      <mat-step [stepControl]="languageFormGroup">
+        <app-language [formGroup]="languageFormGroup"></app-language>
+      </mat-step>
+      <mat-step [stepControl]="personFormGroup">
+        <app-person [formGroup]="personFormGroup" (onNumberEntered)="getPhoneNumber($event)"></app-person>
+      </mat-step>
+      <mat-step>
+        <form [formGroup]="sentFormGroup">
+          <p class="h3">Bewerbung abschicken</p>
+          <div class="question-content">
+            <div class="mat-check-group row">
+              <div class="col-lg-12">
+                <mat-checkbox checked labelPosition="before" formControlName="dsgvoCtrl" value="dsgvoCtrl">
+                  Ich habe die <a href="https://jobportal.com/datenschutz/" target="_blank">Datenschutzerklärung</a>
+                  gelesen und bin damit einverstanden.
+                </mat-checkbox>
+              </div>
+              <div class="col-lg-12">
+                <mat-checkbox checked labelPosition="before" formControlName="agbCtrl" value="agbCtrl">
+                  Ich habe die <a href="https://jobportal.com/agbs/" target="_blank"> „Allgemeine
+                    Geschäftsbedingungen“</a>
+                  gelesen und bin damit einverstanden.
+                </mat-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class="button-area row">
+            <button mat-flat-button class="col" mat-button matStepperPrevious>
+              <span class="icon-text-button">Zurück</span>
+            </button>
+            <button mat-flat-button [disabled]="sentFormGroup.invalid || isLoading" (click)="submit()" class="col"
+              color="primary" mat-button>
+              <span class="icon-text-button">
+                <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>
+                {{buttonText}}</span>
+              <span *ngIf="!isLoading" class="fas fa-chevron-right"></span>
+            </button>
+            <div class="col">
+            </div>
+          </div>
+        </form>
+      </mat-step>
+
+    </mat-vertical-stepper>
+  </div>
+  <mat-spinner class="text-center" *ngIf="isSpinner && isMobile"
+    style="z-index: 10000000;position: absolute;"></mat-spinner>
+
+</div>
+<div *ngIf="isMobile" class="mobileProgressBar">
+  <p class="mt-3 " style="margin-left: 15px; text-align: left !important;"> {{index }} von 12 beantwortet </p>
+  <mat-progress-bar mode="determinate" class="mx-3 mb-3" value="{{process}}"></mat-progress-bar>
+  <br />
+  <div class="mx-2" *ngIf="index == 13">
+    <b style="font-size: 30px;">1. Kostenloses Profil erstellen</b><br>
+    <p style="text-align: left !important;font-size: 18px; margin-left: 2rem;"><b>In wenigen Schritten kannst du deine
+        Wünsche und Anforderungen in deinem Profil erstellen – speziell für dich als LKW-Fahrer.</b></p>
+    <b style="font-size: 30px;">2. Erhalte nur passende Jobangebote</b><br>
+    <p style="text-align: left !important;font-size: 18px; margin-left: 2rem;"><b>Nach deiner Anmeldung bekommst du nur
+        Stellenangebote angezeigt, die auch wirklich zu deinen Wünschen passen. </b></p>
+    <b style="font-size: 30px;">3. Bewirb dich mit einem Klick</b><br>
+    <p style="text-align: left !important;font-size: 18px; margin-left: 2rem;"><b>Wenn dich ein Angebot überzeugt,
+        kannst du dich mit einem Klick bewerben. </b></p>
+  </div>
+</div>
